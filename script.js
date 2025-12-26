@@ -22,6 +22,11 @@ const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   const errorMessage = document.getElementById("errorMessage");
 
+  // Prevent redirect loop on login page
+  auth.onAuthStateChanged((user) => {
+    // Do nothing on login page - let user login or stay
+  });
+
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -44,8 +49,8 @@ if (loginForm) {
 // =====================
 const container = document.querySelector(".container");
 
-if (container) {
-  // Protect page (must be logged in)
+if (container && !loginForm) {
+  // Only protect message pages (not login page)
   auth.onAuthStateChanged((user) => {
     if (!user) {
       window.location.href = "index.html";
