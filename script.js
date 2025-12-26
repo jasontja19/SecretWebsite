@@ -79,17 +79,27 @@ if (container && !loginForm) {
       const elementCenter = rect.top + rect.height / 2;
 
       // Calculate distance from center
-      const distance = Math.abs(centerLine - elementCenter);
+      const distance = centerLine - elementCenter;
       const maxDistance = viewportHeight * 0.5;
 
-      // Normalize visibility (0 = far, 1 = center)
-      let visibility = 1 - Math.min(distance / maxDistance, 1);
+      let visibility;
 
-      // Apply stronger curve for more dramatic effect
-      visibility = Math.pow(visibility, 1.5);
+      if (distance < 0) {
+        // Element is ABOVE center (top of screen)
+        const normalizedDistance = Math.abs(distance) / maxDistance;
+        visibility = 1 - normalizedDistance; // Goes from 100% to 0%
+        visibility = Math.max(0, visibility);
+        // Apply curve for smoother transition
+        visibility = Math.pow(visibility, 1.5);
+      } else {
+        // Element is BELOW center (bottom of screen)
+        const normalizedDistance = distance / maxDistance;
+        visibility = 1 - normalizedDistance * 0.5; // Goes from 100% to 50%
+        visibility = Math.max(0.5, visibility);
+      }
 
       // Set opacity and transform
-      element.style.opacity = 0.3 + visibility * 0.7;
+      element.style.opacity = visibility;
       element.style.transform = `translateY(${(1 - visibility) * 20}px)`;
 
       // Add 'active' class for full visibility
