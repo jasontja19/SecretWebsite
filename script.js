@@ -67,8 +67,10 @@ if (container && !loginForm) {
     });
   }
 
-  // Get all paragraphs and divs for scrollytelling effect
-  const elements = container.querySelectorAll("p, div");
+  // Select only story content — explicitly exclude login-box and error message
+  const elements = container.querySelectorAll(
+    "p:not(#errorMessage), div:not(.login-box)"
+  );
 
   function updateScrollytelling() {
     const viewportHeight = window.innerHeight;
@@ -85,16 +87,15 @@ if (container && !loginForm) {
       let visibility;
 
       if (distance < 0) {
-        // Element is ABOVE center (top of screen)
+        // Element is ABOVE center
         const normalizedDistance = Math.abs(distance) / maxDistance;
-        visibility = 1 - normalizedDistance; // Goes from 100% to 0%
+        visibility = 1 - normalizedDistance;
         visibility = Math.max(0, visibility);
-        // Apply curve for smoother transition
         visibility = Math.pow(visibility, 1.5);
       } else {
-        // Element is BELOW center (bottom of screen)
+        // Element is BELOW center
         const normalizedDistance = distance / maxDistance;
-        visibility = 1 - normalizedDistance * 0.5; // Goes from 100% to 50%
+        visibility = 1 - normalizedDistance * 0.5;
         visibility = Math.max(0.5, visibility);
       }
 
@@ -158,7 +159,6 @@ if (messageTitle && messageTitle.textContent === "A Message for You") {
       const distance = Math.abs(viewportCenter - sectionCenter);
       const maxDistance = viewportHeight / 2;
 
-      // Normalize (0 = center, 1 = far away)
       let visibility = 1 - distance / maxDistance;
       visibility = Math.max(0, Math.min(1, visibility));
 
