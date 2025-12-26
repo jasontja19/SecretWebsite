@@ -1,0 +1,37 @@
+<!-- message2.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Choice</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>If I may,</p>
+      <p>
+        I also want to tell you the truth — something I'm afraid of, something
+        that really breaks me apart.
+      </p>
+      <p>If you want to hear it, you can tap the “Next” button.</p>
+      <p>If not, I completely understand, and you can tap “Skip.”</p>
+      <p>
+        As much as I'm usually good at reading people, I honestly don't know how
+        you'll react to this.
+      </p>
+      <p>So... this is your final warning to press the “Skip” button.</p>
+
+      <div style="margin-top: 30px">
+        <button onclick="window.location.href='message3a.html'">Next</button>
+        <button onclick="window.location.href='message4.html'">Skip</button>
+      </div>
+
+      <button id="logoutButton" style="margin-top: 40px">Logout</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-auth-compat.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
