@@ -5,62 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="style.css" />
-    <style>
-      .container {
-        max-width: 400px;
-        margin: 100px auto;
-        padding: 40px;
-        background: #222;
-        border-radius: 10px;
-      }
-
-      .container h1 {
-        margin-bottom: 30px;
-        color: white;
-      }
-
-      .container label {
-        display: block;
-        margin-bottom: 8px;
-        color: white;
-      }
-
-      .container input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #444;
-        border-radius: 4px;
-        background: #333;
-        color: white;
-        font-size: 16px;
-      }
-
-      .container button {
-        width: 100%;
-      }
-
-      #errorMessage {
-        margin-top: 15px;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
       <h1>Login</h1>
-      <form id="loginForm">
-        <label for="email">Username (Email):</label>
-        <input type="email" id="email" required />
+      <h3>Sorry for the extra step.</h3>
+      <h3>I just wanted to make sure this page is only for you 😅</h3>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" required />
+      <div class="login-box">
+        <form id="loginForm">
+          <label for="email">Username:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="yourname@gmail.com"
+            required
+          />
 
-        <button type="submit">Login</button>
-      </form>
-      <p id="errorMessage" style="color: red"></p>
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="ddmmyyyy"
+            required
+          />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <h4>The username is my first name, followed by @gmail.com.</h4>
+      <h4>The password is my birthday in ddmmyyyy format (numbers only).</h4>
+      <p id="errorMessage"></p>
     </div>
 
-    <!-- Use newer Firebase version (v9+) that doesn't require eval -->
+    <!-- Firebase (compat version) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="script.js"></script>
